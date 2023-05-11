@@ -15,7 +15,7 @@ final class MainLoaderPresentationAdapter: MainViewControllerDelegate {
         postsLoader.load { [weak self] result in
             switch result {
             case let .success(posts):
-                print(posts)
+                print("Success => posts")
             case let .failure(error):
                 print(error)
             }
@@ -24,7 +24,7 @@ final class MainLoaderPresentationAdapter: MainViewControllerDelegate {
         usersLoader.load { [weak self] result in
             switch result {
             case let .success(users):
-                print(users)
+                print("Success => users")
             case let .failure(error):
                 print(error)
             }
@@ -33,7 +33,7 @@ final class MainLoaderPresentationAdapter: MainViewControllerDelegate {
         productsLoader.load { [weak self] result in
             switch result {
             case let .success(products):
-                print(products)
+                print("Success => products")
             case let .failure(error):
                 print(error)
             }

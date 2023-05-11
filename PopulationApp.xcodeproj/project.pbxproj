@@ -25,7 +25,7 @@
 		C00904D52A0CAF15008E31BA /* users.json in Resources */ = {isa = PBXBuildFile; fileRef = C00904D42A0CAF15008E31BA /* users.json */; };
 		C00904D72A0CAF4F008E31BA /* products.json in Resources */ = {isa = PBXBuildFile; fileRef = C00904D62A0CAF4F008E31BA /* products.json */; };
 		C00904D92A0CAF63008E31BA /* posts.json in Resources */ = {isa = PBXBuildFile; fileRef = C00904D82A0CAF63008E31BA /* posts.json */; };
-		C00904DB2A0CAF88008E31BA /* APICallFake.swift in Sources */ = {isa = PBXBuildFile; fileRef = C00904DA2A0CAF88008E31BA /* APICallFake.swift */; };
+		C00904DB2A0CAF88008E31BA /* HTTPClientFake.swift in Sources */ = {isa = PBXBuildFile; fileRef = C00904DA2A0CAF88008E31BA /* HTTPClientFake.swift */; };
 		C00904DD2A0CB42A008E31BA /* PostsRemoteItemMapper.swift in Sources */ = {isa = PBXBuildFile; fileRef = C00904DC2A0CB42A008E31BA /* PostsRemoteItemMapper.swift */; };
 		C00904DF2A0CB440008E31BA /* RemotePostItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = C00904DE2A0CB440008E31BA /* RemotePostItem.swift */; };
 		C00904E12A0CBDCC008E31BA /* ProductsRemoteItemMapper.swift in Sources */ = {isa = PBXBuildFile; fileRef = C00904E02A0CBDCC008E31BA /* ProductsRemoteItemMapper.swift */; };
@@ -72,7 +72,7 @@
 		C00904D42A0CAF15008E31BA /* users.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = users.json; sourceTree = "<group>"; };
 		C00904D62A0CAF4F008E31BA /* products.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = products.json; sourceTree = "<group>"; };
 		C00904D82A0CAF63008E31BA /* posts.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = posts.json; sourceTree = "<group>"; };
-		C00904DA2A0CAF88008E31BA /* APICallFake.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APICallFake.swift; sourceTree = "<group>"; };
+		C00904DA2A0CAF88008E31BA /* HTTPClientFake.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HTTPClientFake.swift; sourceTree = "<group>"; };
 		C00904DC2A0CB42A008E31BA /* PostsRemoteItemMapper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostsRemoteItemMapper.swift; sourceTree = "<group>"; };
 		C00904DE2A0CB440008E31BA /* RemotePostItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RemotePostItem.swift; sourceTree = "<group>"; };
 		C00904E02A0CBDCC008E31BA /* ProductsRemoteItemMapper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProductsRemoteItemMapper.swift; sourceTree = "<group>"; };
@@ -159,7 +159,7 @@
 		C00904C52A0CAB68008E31BA /* Shared API */ = {
 			isa = PBXGroup;
 			children = (
-				C00904DA2A0CAF88008E31BA /* APICallFake.swift */,
+				C00904DA2A0CAF88008E31BA /* HTTPClientFake.swift */,
 				C00904C62A0CAB71008E31BA /* HTTPClient.swift */,
 				C00904C82A0CAB79008E31BA /* URLSessionHTTPClient.swift */,
 			);
@@ -319,7 +319,7 @@
 				C009043A2A0C089A008E31BA /* AppDelegate.swift in Sources */,
 				C00904E32A0CBE08008E31BA /* RemoteProductItem.swift in Sources */,
 				C00904C72A0CAB71008E31BA /* HTTPClient.swift in Sources */,
-				C00904DB2A0CAF88008E31BA /* APICallFake.swift in Sources */,
+				C00904DB2A0CAF88008E31BA /* HTTPClientFake.swift in Sources */,
 				C00904E72A0CC0B8008E31BA /* RemoteUserItem.swift in Sources */,
 				C00904BC2A0CAB25008E31BA /* PostsRemoteLoader.swift in Sources */,
 				C00904D02A0CAD57008E31BA /* UserResultsModel.swift in Sources */,

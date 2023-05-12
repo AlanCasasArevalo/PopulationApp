@@ -53,16 +53,7 @@ final class MainServiceAdapterTests: XCTestCase {
             productsLoader: loader
         )
         
-        let expectation = expectation(description: "Wait to download service")
-        
-        var results: MainLoader.Result?
-        
-        sut.load {
-            results = $0
-            expectation.fulfill()
-        }
-        
-        wait(for: [expectation], timeout: 0.2)
+        let results = getResult(sut)
         
         XCTAssertEqual(try? results?.get(), loader.stub)
     }
@@ -77,6 +68,14 @@ final class MainServiceAdapterTests: XCTestCase {
             productsLoader: loader
         )
         
+        let results = getResult(sut)
+        
+        XCTAssertEqual(results?.error as NSError?, loader.postLoaderError)
+    }
+}
+
+extension MainServiceAdapterTests {
+    private func getResult (_ sut: MainLoaderAdapter) -> MainLoader.Result? {
         let expectation = expectation(description: "Wait to download service")
         
         var results: MainLoader.Result?
@@ -88,7 +87,7 @@ final class MainServiceAdapterTests: XCTestCase {
         
         wait(for: [expectation], timeout: 0.2)
         
-        XCTAssertEqual(results?.error as NSError?, loader.postLoaderError)
+        return results
     }
 }
 

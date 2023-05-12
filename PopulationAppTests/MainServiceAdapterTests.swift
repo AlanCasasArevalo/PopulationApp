@@ -45,32 +45,32 @@ class MainLoaderAdapter: MainLoader {
 
 final class MainServiceAdapterTests: XCTestCase {
     func test_load_produces_CombinedLoaderResults() {
-        let loader = LoaderStub()
-        
-        let sut = MainLoaderAdapter(
-            postsLoader: loader,
-            usersLoader: loader,
-            productsLoader: loader
-        )
-        
+        let (sut, loader) = makeSUT()
+
         let results = getResult(sut)
         
         XCTAssertEqual(try? results?.get(), loader.stub)
     }
     
     func test_load_failsWithPostsLoaderError () {
-        let loader = LoaderStub()
+        let (sut, loader) = makeSUT()
         loader.postLoaderError = NSError(domain: "any", code: -1)
-        
-        let sut = MainLoaderAdapter(
-            postsLoader: loader,
-            usersLoader: loader,
-            productsLoader: loader
-        )
-        
+
         let results = getResult(sut)
         
         XCTAssertEqual(results?.error as NSError?, loader.postLoaderError)
+    }
+}
+
+extension MainServiceAdapterTests {
+    private func makeSUT(
+        file: StaticString = #filePath,
+        line: UInt = #line
+    ) -> (sut: MainLoaderAdapter, loader: LoaderStub) {
+        let loader = LoaderStub()
+        let sut = MainLoaderAdapter(postsLoader: loader, usersLoader: loader, productsLoader: loader)
+        trackForMemoryLeaks(sut, file: file, line: line)
+        return (sut, loader)
     }
 }
 

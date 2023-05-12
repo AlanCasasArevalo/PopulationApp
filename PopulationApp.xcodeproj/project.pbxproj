@@ -37,6 +37,7 @@
 		C00904F22A0CC592008E31BA /* MainViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = C00904F02A0CC592008E31BA /* MainViewController.xib */; };
 		C00904F42A0CC635008E31BA /* MainLoaderPresentationAdapter.swift in Sources */ = {isa = PBXBuildFile; fileRef = C00904F32A0CC635008E31BA /* MainLoaderPresentationAdapter.swift */; };
 		C00908602A0D42F8008E31BA /* MainServiceAdapterTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = C009085F2A0D42F8008E31BA /* MainServiceAdapterTests.swift */; };
+		C0AF766D2A0E1EAD00E7DC0A /* XCTestCase+MemoryLeakTracking.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0AF766C2A0E1EAD00E7DC0A /* XCTestCase+MemoryLeakTracking.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -96,6 +97,7 @@
 		C00904F32A0CC635008E31BA /* MainLoaderPresentationAdapter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainLoaderPresentationAdapter.swift; sourceTree = "<group>"; };
 		C009085D2A0D42F8008E31BA /* PopulationAppTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = PopulationAppTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		C009085F2A0D42F8008E31BA /* MainServiceAdapterTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainServiceAdapterTests.swift; sourceTree = "<group>"; };
+		C0AF766C2A0E1EAD00E7DC0A /* XCTestCase+MemoryLeakTracking.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "XCTestCase+MemoryLeakTracking.swift"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -255,6 +257,7 @@
 			isa = PBXGroup;
 			children = (
 				C009085F2A0D42F8008E31BA /* MainServiceAdapterTests.swift */,
+				C0AF766C2A0E1EAD00E7DC0A /* XCTestCase+MemoryLeakTracking.swift */,
 			);
 			path = PopulationAppTests;
 			sourceTree = "<group>";
@@ -395,6 +398,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				C00908602A0D42F8008E31BA /* MainServiceAdapterTests.swift in Sources */,
+				C0AF766D2A0E1EAD00E7DC0A /* XCTestCase+MemoryLeakTracking.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

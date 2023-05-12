@@ -215,26 +215,32 @@ extension MainServiceAdapterTests {
         var productsLoaderError: NSError?
 
         func load(completion: @escaping (PostsLoaderResult) -> ()) {
-            if let error = postsLoaderError {
-                completion(.failure(error))
-            } else {
-                completion(.success(stub.posts))
+            DispatchQueue.global().async {
+                if let error = self.postsLoaderError {
+                    completion(.failure(error))
+                } else {
+                    completion(.success(self.stub.posts))
+                }
             }
         }
         
         func load(completion: @escaping (ProductsLoaderResult) -> ()) {
-            if let error = productsLoaderError {
-                completion(.failure(error))
-            } else {
-                completion(.success(stub.products))
+            DispatchQueue.global().async {
+                if let error = self.productsLoaderError {
+                    completion(.failure(error))
+                } else {
+                    completion(.success(self.stub.products))
+                }
             }
         }
         
         func load(completion: @escaping (UsersLoaderResult) -> ()) {
-            if let error = usersLoaderError {
-                completion(.failure(error))
-            } else {
-                completion(.success(stub.users))
+            DispatchQueue.global().async {
+                if let error = self.usersLoaderError {
+                    completion(.failure(error))
+                } else {
+                    completion(.success(self.stub.users))
+                }
             }
         }
     }

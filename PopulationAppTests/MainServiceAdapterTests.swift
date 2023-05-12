@@ -29,8 +29,11 @@ class MainLoaderAdapter: MainLoader {
             if case let .failure(error) = posts {
                 return completion(.failure(error))
             }
-            
             self.usersLoader.load { users in
+                if case let .failure(error) = users {
+                    return completion(.failure(error))
+                }
+                
                 self.productsLoader.load { products in
                     completion(.success(MainModel(
                         posts: try! posts.get(),
@@ -59,6 +62,15 @@ final class MainServiceAdapterTests: XCTestCase {
         let results = getResult(sut)
         
         XCTAssertEqual(results?.error as NSError?, loader.postsLoaderError)
+    }
+    
+    func test_load_failsWithUsersLoaderError () {
+        let (sut, loader) = makeSUT()
+        loader.usersLoaderError = NSError(domain: "any", code: -1)
+
+        let results = getResult(sut)
+        
+        XCTAssertEqual(results?.error as NSError?, loader.usersLoaderError)
     }
 }
 
@@ -145,6 +157,7 @@ extension MainServiceAdapterTests {
         )
         
         var postsLoaderError: NSError?
+        var usersLoaderError: NSError?
 
         func load(completion: @escaping (PostsLoaderResult) -> ()) {
             if let error = postsLoaderError {
@@ -159,7 +172,11 @@ extension MainServiceAdapterTests {
         }
         
         func load(completion: @escaping (UsersLoaderResult) -> ()) {
-            completion(.success(stub.users))
+            if let error = usersLoaderError {
+                completion(.failure(error))
+            } else {
+                completion(.success(stub.users))
+            }
         }
     }
 }

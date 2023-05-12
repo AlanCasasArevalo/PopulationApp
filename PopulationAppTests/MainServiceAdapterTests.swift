@@ -25,12 +25,22 @@ class MainLoaderAdapter: MainLoader {
     }
     
     func load(completion: @escaping (MainLoader.Result) -> ()) {
-        
+        postsLoader.load { posts in
+            self.usersLoader.load { users in
+                self.productsLoader.load { products in
+                    completion(.success(MainModel(
+                        posts: try! posts.get(),
+                        users: try! users.get(),
+                        products: try! products.get()))
+                    )
+                }
+            }
+        }
     }
 }
 
 final class MainServiceAdapterTests: XCTestCase {
-    func test() {
+    func test_load_produces_CombinedLoaderResults() {
         let loader = LoaderStub()
         
         let sut = MainLoaderAdapter(
@@ -107,15 +117,15 @@ extension MainServiceAdapterTests {
             ]
         )
         func load(completion: @escaping (PostsLoaderResult) -> ()) {
-            
+            completion(.success(stub.posts))
         }
         
         func load(completion: @escaping (ProductsLoaderResult) -> ()) {
-            
+            completion(.success(stub.products))
         }
         
         func load(completion: @escaping (UsersLoaderResult) -> ()) {
-            
+            completion(.success(stub.users))
         }
     }
 }

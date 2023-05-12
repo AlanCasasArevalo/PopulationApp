@@ -35,6 +35,10 @@ class MainLoaderAdapter: MainLoader {
                 }
                 
                 self.productsLoader.load { products in
+                    if case let .failure(error) = products {
+                        return completion(.failure(error))
+                    }
+                    
                     completion(.success(MainModel(
                         posts: try! posts.get(),
                         users: try! users.get(),
@@ -71,6 +75,15 @@ final class MainServiceAdapterTests: XCTestCase {
         let results = getResult(sut)
         
         XCTAssertEqual(results?.error as NSError?, loader.usersLoaderError)
+    }
+    
+    func test_load_failsWithProductsLoaderError () {
+        let (sut, loader) = makeSUT()
+        loader.productsLoaderError = NSError(domain: "any", code: -1)
+
+        let results = getResult(sut)
+        
+        XCTAssertEqual(results?.error as NSError?, loader.productsLoaderError)
     }
 }
 
@@ -158,6 +171,7 @@ extension MainServiceAdapterTests {
         
         var postsLoaderError: NSError?
         var usersLoaderError: NSError?
+        var productsLoaderError: NSError?
 
         func load(completion: @escaping (PostsLoaderResult) -> ()) {
             if let error = postsLoaderError {
@@ -168,7 +182,11 @@ extension MainServiceAdapterTests {
         }
         
         func load(completion: @escaping (ProductsLoaderResult) -> ()) {
-            completion(.success(stub.products))
+            if let error = productsLoaderError {
+                completion(.failure(error))
+            } else {
+                completion(.success(stub.products))
+            }
         }
         
         func load(completion: @escaping (UsersLoaderResult) -> ()) {

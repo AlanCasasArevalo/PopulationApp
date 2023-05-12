@@ -1,39 +1,17 @@
 import Foundation
 
 final class MainLoaderPresentationAdapter: MainViewControllerDelegate {
-    private let postsLoader: PostsLoader
-    private let productsLoader: ProductsLoader
-    private let usersLoader: UsersLoader
-    
-    init(postsLoader: PostsLoader, productsLoader: ProductsLoader, usersLoader: UsersLoader) {
-        self.postsLoader = postsLoader
-        self.productsLoader = productsLoader
-        self.usersLoader = usersLoader
+    private let mainLoader: MainLoader
+
+    init(mainLoader: MainLoader) {
+        self.mainLoader = mainLoader
     }
-    
+        
     func didRequestRefresh() {
-        postsLoader.load { [weak self] result in
+        mainLoader.load { [weak self] result in
             switch result {
-            case let .success(posts):
-                print("Success => posts")
-            case let .failure(error):
-                print(error)
-            }
-        }
-                
-        usersLoader.load { [weak self] result in
-            switch result {
-            case let .success(users):
-                print("Success => users")
-            case let .failure(error):
-                print(error)
-            }
-        }
-                        
-        productsLoader.load { [weak self] result in
-            switch result {
-            case let .success(products):
-                print("Success => products")
+            case let .success(mainResult):
+                print("Success => result")
             case let .failure(error):
                 print(error)
             }

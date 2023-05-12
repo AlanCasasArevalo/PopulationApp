@@ -9,7 +9,13 @@ public final class MainUIComposer {
         postsLoader: PostsLoader
     ) -> UIViewController {
         
-        let loaderAdapter = MainLoaderPresentationAdapter(postsLoader: postsLoader, productsLoader: productsLoader, usersLoader: usersLoader)
+        let mainLoaderAdapter = MainLoaderAdapter(
+            postsLoader: postsLoader,
+            usersLoader: usersLoader,
+            productsLoader: productsLoader
+        )
+        
+        let loaderAdapter = MainLoaderPresentationAdapter(mainLoader: mainLoaderAdapter)
         
         let viewController = MainViewController.makeMainViewController(
             delegate: loaderAdapter,

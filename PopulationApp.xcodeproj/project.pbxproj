@@ -38,6 +38,9 @@
 		C00904F42A0CC635008E31BA /* MainLoaderPresentationAdapter.swift in Sources */ = {isa = PBXBuildFile; fileRef = C00904F32A0CC635008E31BA /* MainLoaderPresentationAdapter.swift */; };
 		C00908602A0D42F8008E31BA /* MainServiceAdapterTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = C009085F2A0D42F8008E31BA /* MainServiceAdapterTests.swift */; };
 		C0AF766D2A0E1EAD00E7DC0A /* XCTestCase+MemoryLeakTracking.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0AF766C2A0E1EAD00E7DC0A /* XCTestCase+MemoryLeakTracking.swift */; };
+		C0AF766F2A0E41F700E7DC0A /* MainLoader.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0AF766E2A0E41F700E7DC0A /* MainLoader.swift */; };
+		C0AF76712A0E421700E7DC0A /* MainModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0AF76702A0E421700E7DC0A /* MainModel.swift */; };
+		C0AF76732A0E423D00E7DC0A /* MainLoaderAdapter.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0AF76722A0E423D00E7DC0A /* MainLoaderAdapter.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -98,6 +101,9 @@
 		C009085D2A0D42F8008E31BA /* PopulationAppTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = PopulationAppTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		C009085F2A0D42F8008E31BA /* MainServiceAdapterTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainServiceAdapterTests.swift; sourceTree = "<group>"; };
 		C0AF766C2A0E1EAD00E7DC0A /* XCTestCase+MemoryLeakTracking.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "XCTestCase+MemoryLeakTracking.swift"; sourceTree = "<group>"; };
+		C0AF766E2A0E41F700E7DC0A /* MainLoader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainLoader.swift; sourceTree = "<group>"; };
+		C0AF76702A0E421700E7DC0A /* MainModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainModel.swift; sourceTree = "<group>"; };
+		C0AF76722A0E423D00E7DC0A /* MainLoaderAdapter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainLoaderAdapter.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -195,6 +201,7 @@
 			children = (
 				C00904CB2A0CABFA008E31BA /* PostResultsModel.swift */,
 				C00904CD2A0CAD11008E31BA /* ProductResultsModel.swift */,
+				C0AF76702A0E421700E7DC0A /* MainModel.swift */,
 				C00904DE2A0CB440008E31BA /* RemotePostItem.swift */,
 				C00904CF2A0CAD57008E31BA /* UserResultsModel.swift */,
 				C00904E22A0CBE08008E31BA /* RemoteProductItem.swift */,
@@ -228,6 +235,7 @@
 			children = (
 				C00904B92A0CAB16008E31BA /* PostsLoader.swift */,
 				C00904BD2A0CAB31008E31BA /* ProductsLoader.swift */,
+				C0AF766E2A0E41F700E7DC0A /* MainLoader.swift */,
 				C00904C12A0CAB47008E31BA /* UsersLoader.swift */,
 			);
 			path = Protocols;
@@ -237,6 +245,7 @@
 			isa = PBXGroup;
 			children = (
 				C00904BB2A0CAB25008E31BA /* PostsRemoteLoader.swift */,
+				C0AF76722A0E423D00E7DC0A /* MainLoaderAdapter.swift */,
 				C00904BF2A0CAB3C008E31BA /* ProductsRemoteLoader.swift */,
 				C00904C32A0CAB55008E31BA /* UsersRemoteLoader.swift */,
 			);
@@ -370,16 +379,19 @@
 				C00904C02A0CAB3C008E31BA /* ProductsRemoteLoader.swift in Sources */,
 				C00904F12A0CC592008E31BA /* MainViewController.swift in Sources */,
 				C00904EE2A0CC3CC008E31BA /* MainUIComposer.swift in Sources */,
+				C0AF76712A0E421700E7DC0A /* MainModel.swift in Sources */,
 				C00904C92A0CAB79008E31BA /* URLSessionHTTPClient.swift in Sources */,
 				C00904CC2A0CABFA008E31BA /* PostResultsModel.swift in Sources */,
 				C00904BE2A0CAB31008E31BA /* ProductsLoader.swift in Sources */,
 				C00904F42A0CC635008E31BA /* MainLoaderPresentationAdapter.swift in Sources */,
+				C0AF766F2A0E41F700E7DC0A /* MainLoader.swift in Sources */,
 				C00904DD2A0CB42A008E31BA /* PostsRemoteItemMapper.swift in Sources */,
 				C00904E12A0CBDCC008E31BA /* ProductsRemoteItemMapper.swift in Sources */,
 				C00904CE2A0CAD11008E31BA /* ProductResultsModel.swift in Sources */,
 				C00904C22A0CAB47008E31BA /* UsersLoader.swift in Sources */,
 				C00904BA2A0CAB16008E31BA /* PostsLoader.swift in Sources */,
 				C009043A2A0C089A008E31BA /* AppDelegate.swift in Sources */,
+				C0AF76732A0E423D00E7DC0A /* MainLoaderAdapter.swift in Sources */,
 				C00904E32A0CBE08008E31BA /* RemoteProductItem.swift in Sources */,
 				C00904C72A0CAB71008E31BA /* HTTPClient.swift in Sources */,
 				C00904DB2A0CAF88008E31BA /* HTTPClientFake.swift in Sources */,

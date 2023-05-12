@@ -26,6 +26,10 @@ class MainLoaderAdapter: MainLoader {
     
     func load(completion: @escaping (MainLoader.Result) -> ()) {
         postsLoader.load { posts in
+            if case let .failure(error) = posts {
+                return completion(.failure(error))
+            }
+            
             self.usersLoader.load { users in
                 self.productsLoader.load { products in
                     completion(.success(MainModel(
@@ -61,6 +65,30 @@ final class MainServiceAdapterTests: XCTestCase {
         wait(for: [expectation], timeout: 0.2)
         
         XCTAssertEqual(try? results?.get(), loader.stub)
+    }
+    
+    func test_load_failsWithPostsLoaderError () {
+        let loader = LoaderStub()
+        loader.postLoaderError = NSError(domain: "any", code: -1)
+        
+        let sut = MainLoaderAdapter(
+            postsLoader: loader,
+            usersLoader: loader,
+            productsLoader: loader
+        )
+        
+        let expectation = expectation(description: "Wait to download service")
+        
+        var results: MainLoader.Result?
+        
+        sut.load {
+            results = $0
+            expectation.fulfill()
+        }
+        
+        wait(for: [expectation], timeout: 0.2)
+        
+        XCTAssertEqual(results?.error as NSError?, loader.postLoaderError)
     }
 }
 
@@ -116,8 +144,15 @@ extension MainServiceAdapterTests {
                 )
             ]
         )
+        
+        var postLoaderError: NSError?
+        
         func load(completion: @escaping (PostsLoaderResult) -> ()) {
-            completion(.success(stub.posts))
+            if let error = postLoaderError {
+                completion(.failure(error))
+            } else {
+                completion(.success(stub.posts))
+            }
         }
         
         func load(completion: @escaping (ProductsLoaderResult) -> ()) {
@@ -126,6 +161,17 @@ extension MainServiceAdapterTests {
         
         func load(completion: @escaping (UsersLoaderResult) -> ()) {
             completion(.success(stub.users))
+        }
+    }
+}
+
+private extension Result {
+    var error: Failure? {
+        switch self {
+        case .success:
+            return nil
+        case let .failure(error):
+            return error
         }
     }
 }

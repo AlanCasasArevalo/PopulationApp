@@ -54,11 +54,11 @@ final class MainServiceAdapterTests: XCTestCase {
     
     func test_load_failsWithPostsLoaderError () {
         let (sut, loader) = makeSUT()
-        loader.postLoaderError = NSError(domain: "any", code: -1)
+        loader.postsLoaderError = NSError(domain: "any", code: -1)
 
         let results = getResult(sut)
         
-        XCTAssertEqual(results?.error as NSError?, loader.postLoaderError)
+        XCTAssertEqual(results?.error as NSError?, loader.postsLoaderError)
     }
 }
 
@@ -144,10 +144,10 @@ extension MainServiceAdapterTests {
             ]
         )
         
-        var postLoaderError: NSError?
-        
+        var postsLoaderError: NSError?
+
         func load(completion: @escaping (PostsLoaderResult) -> ()) {
-            if let error = postLoaderError {
+            if let error = postsLoaderError {
                 completion(.failure(error))
             } else {
                 completion(.success(stub.posts))

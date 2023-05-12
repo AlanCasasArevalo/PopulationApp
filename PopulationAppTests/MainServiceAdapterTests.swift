@@ -18,6 +18,8 @@ class MainLoaderAdapter: MainLoader {
     let usersLoader: UsersLoader
     let productsLoader: ProductsLoader
     
+    private let queue = DispatchQueue(label: "MainLoaderAdapter")
+    
     init(postsLoader: PostsLoader, usersLoader: UsersLoader, productsLoader: ProductsLoader) {
         self.postsLoader = postsLoader
         self.usersLoader = usersLoader
@@ -63,29 +65,35 @@ class MainLoaderAdapter: MainLoader {
         var partialResult = PartialResult(completion: completion)
         
         postsLoader.load { result in
-            switch result {
-            case .success(let value):
-                partialResult.posts = value
-            case .failure(let error):
-                partialResult.error = error
+            self.queue.sync {
+                switch result {
+                case .success(let value):
+                    partialResult.posts = value
+                case .failure(let error):
+                    partialResult.error = error
+                }
             }
         }
         
         usersLoader.load { result in
-            switch result {
-            case .success(let value):
-                partialResult.users = value
-            case .failure(let error):
-                partialResult.error = error
+            self.queue.sync {
+                switch result {
+                case .success(let value):
+                    partialResult.users = value
+                case .failure(let error):
+                    partialResult.error = error
+                }
             }
         }
         
         productsLoader.load { result in
-            switch result {
-            case .success(let value):
-                partialResult.products = value
-            case .failure(let error):
-                partialResult.error = error
+            self.queue.sync {
+                switch result {
+                case .success(let value):
+                    partialResult.products = value
+                case .failure(let error):
+                    partialResult.error = error
+                }
             }
         }
     }

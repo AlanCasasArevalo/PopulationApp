@@ -1,7 +1,7 @@
 import Foundation
 
 // MARK: - ProductResultsModel
-public struct ProductResultsModel {
+public struct ProductResultsModel: Equatable {
     let products: [Product]?
     let total, skip, limit: Int?
     
@@ -14,7 +14,7 @@ public struct ProductResultsModel {
 }
 
 // MARK: - Product
-public struct Product {
+public struct Product: Equatable {
     let id: Int?
     let title, description: String?
     let price: Int?

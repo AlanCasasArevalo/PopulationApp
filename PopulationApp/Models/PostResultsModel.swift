@@ -1,7 +1,7 @@
 import Foundation
 
 // MARK: - PostResultsModel
-public struct PostResultsModel {
+public struct PostResultsModel: Equatable {
     let posts: [Post]?
     let total, skip, limit: Int?
     
@@ -14,7 +14,7 @@ public struct PostResultsModel {
 }
 
 // MARK: - Post
-public struct Post {
+public struct Post: Equatable {
     let id: Int?
     let title, body: String?
     let userId: Int?

@@ -1,7 +1,7 @@
 import Foundation
 
 // MARK: - UserResultsModel
-public struct UserResultsModel {
+public struct UserResultsModel: Equatable {
     let users: [User]?
     let total, skip, limit: Int?
     
@@ -14,7 +14,7 @@ public struct UserResultsModel {
 }
 
 // MARK: - User
-public struct User {
+public struct User: Equatable {
     let id: Int?
     let firstName, lastName, maidenName: String?
     let age: Int?
